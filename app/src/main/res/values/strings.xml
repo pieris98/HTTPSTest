@@ -2,7 +2,12 @@
     <string name="app_name">HTTPSTest</string>
     <string name="title">Test HTTPS connection with server</string>
     <string name="address_prompt">Enter IP address and port of server</string>
+    <string name="post_prompt">Enter POST data</string>
+    <string name="post_hint">POST data</string>
     <string name="address_hint">X.X.X.X:PORT</string>
     <string name="test_get_button">Test GET request!</string>
     <string name="test_post_button">Test POST request!</string>
+    <string name="test_get_response">GET response will appear here!</string>
+    <string name="test_post_response">POST response will appear here!</string>
+
 </resources>

@@ -1,11 +1,7 @@
 package com.example.httpstest
 
 import CustomCallback
-import android.content.ContentValues
-import android.os.AsyncTask
 import android.os.Bundle
-import android.util.Log
-import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.security.KeyStore
@@ -15,10 +11,6 @@ import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManagerFactory
 import java.security.cert.X509Certificate
 import java.io.*
-import java.net.HttpURLConnection
-import java.net.URL
-import javax.net.ssl.HttpsURLConnection
-
 
 
 enum class RequestType {
@@ -71,15 +63,15 @@ class MainActivity : AppCompatActivity(),CustomCallback {
             val baseUrl = "https://${address_field.text}"
             val task = HttpsGetAsyncTask(context)
             val response=task.execute(baseUrl + "/test/get").get()
-            test_response.text=response
+            test_response_get.text=response
         }
 
         test_post_button.setOnClickListener(){
             val baseUrl = ("https://${address_field.text}")
             var  postData= HashMap<String,String> ()
             postData["title"]= "Pieris"
-            postData["text"]= "KALNIXTA PELLE"
-            val task = HttpsPostAsyncTask(postData, RequestType.REQUEST_TYPE_1,this)
+            postData["text"]= post_field.text.toString()
+            val task = HttpsPostAsyncTask(postData, RequestType.REQUEST_TYPE_2,this)
             task.execute(baseUrl + "/test/post")
         }
     }
@@ -87,7 +79,10 @@ class MainActivity : AppCompatActivity(),CustomCallback {
     override fun completionHandler(success: Boolean?, type: RequestType, response:Any) {
         when (type){
             RequestType.REQUEST_TYPE_1-> runOnUiThread(Runnable {
-                test_response.text=response.toString()
+                test_response_get.text=response.toString()
+            })
+            RequestType.REQUEST_TYPE_2-> runOnUiThread(Runnable {
+                test_response_post.text=response.toString()
             });
         }
     }

@@ -94,7 +94,9 @@ class HttpsPostAsyncTask(postData: Map<String, String>?,type:RequestType ,callba
                         callback?.completionHandler(true, type!!, response)
 
 
-                    RequestType.REQUEST_TYPE_2->null //TODO
+                    RequestType.REQUEST_TYPE_2->
+                        // Use the response to create the object you need
+                        callback?.completionHandler(true, type!!, response)
                     else->callback?.completionHandler(true, type!!, response)
                 }
 
